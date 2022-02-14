@@ -17,6 +17,11 @@ export const TodoScreen = () => {
   
   const selectedTodo = todos.find((todo) => todo.id === todoId);
   
+  const saveHandler = async (id, title) => {
+    await updateTodo(id, title);
+    setModal(false);
+  };
+  
   return (
     <View>
       <EditModal
@@ -24,7 +29,7 @@ export const TodoScreen = () => {
         id={selectedTodo.id}
         visible={modal}
         handleModalClose={() => setModal(false)}
-        saveEditableTodo={updateTodo}
+        saveEditableTodo={saveHandler}
       />
       
       <AppCard style={styles.card}>
